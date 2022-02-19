@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<head>
+</head>
+<body>
+<script>
+var LOG = "";
+function OU(s){
+	LOG+=s+"";
+}
+function updateClipboard(newClip) {
+  navigator.clipboard.writeText(newClip).then(function() {
+    /* clipboard successfully set */
+  }, function() {
+    /* clipboard write failed */
+  });
+}
+//e="(x*x)+(y*y)+(z*z)+(w*w)<=(5*5)&&(x*x)+(y*y)+(z*z)+(w*w)>(4.1*4.1)";
+e="Math.cos(x)+Math.cos(y)+Math.cos(z)+Math.cos(w)<0.4&&Math.cos(x)+Math.cos(y)+Math.cos(z)+Math.cos(w)>-0.4";
+for(var i=-5;i<6;i++){
+	for(var j=-5;j<6;j++){
+		for(var k=-5;k<6;k++){
+			for(var l=-5;l<6;l++){
+				var x=i,y=j,z=k,w=l;
+				if(eval(e)){
+					OU("["+(x)+","+(y)+","+(z)+","+(w)+","+(255-((Math.abs(z))/5*255))+","+(255-((w+5)/10*255))+","+((w+5)/10*255)+",255],");
+				}else{
+					//OU("false: ("+x+","+y+","+z+","+w+")");
+				}
+			}
+		}
+	}
+}
+//alert("fin.");
+//alert(LOG);
+updateClipboard(LOG);
+</script>
+</body>
